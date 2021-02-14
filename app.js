@@ -21,18 +21,20 @@ const showImages = images => {
   galleryHeader.style.display = 'flex';
   images.forEach(image => {
     let div = document.createElement('div');
-    div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
+    div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-4 box-size';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
-    gallery.appendChild(div)
+    gallery.appendChild(div)  
   })
-
+    toggleSpinner();
 }
 
 const getImages = (query) => {
-  fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
+    fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
     .catch(err => console.log(err))
+    toggleSpinner();
+
 }
 
 let slideIndex = 0;
@@ -46,14 +48,13 @@ const selectItem = (event, img) => {
   } else {
     element.classList.remove('added');
     sliders.pop(img);
-    // alert('Hey, Already added !')
   }
 }
 var timer
 const createSlider = () => {
   // check slider image length
   if (sliders.length < 2) {
-    alert('Select at least 2 image.')
+    swal("Select at least 2 images");
     return;
   }
   // crate slider previous next area
@@ -122,10 +123,26 @@ searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
-  getImages(search.value)
+  if (search.value == '' || search.value == " " || search.value == null){
+    gallery.innerHTML = "";
+    swal("Please Enter Your Favorite Image Keyword");
+    
+  }
+  else{
+    getImages(search.value)
+  }
+  
   sliders.length = 0;
 })
 
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+const toggleSpinner = () =>{
+  const spinner = document.getElementById('spinner');
+  const imgGallery = document.getElementById('img-gallery');
+    spinner.classList.toggle('d-none');
+    imgGallery.classList.toggle('d-none');
+  }
+

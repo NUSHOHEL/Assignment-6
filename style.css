@@ -1,3 +1,16 @@
+body{
+  background-image: url(leaf.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.font-style{
+  color: rgb(255, 255, 255);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+  font-weight: bold;
+}
 #sliders {
     height: 400px;
     width: 60%;
@@ -9,6 +22,7 @@
   .gallery-header {
     display: none;
   }
+
   
   .slider-item {
     display: none;
@@ -16,6 +30,8 @@
   
   .img-thumbnail {
     cursor: pointer;
+    height: 200px;
+    width: 250px;
   }
   
   .added {
@@ -26,6 +42,7 @@
   img {
     height: 400px;
     object-fit:cover;
+    border-radius: 20px;
   }
   
   .prev-next {
@@ -63,4 +80,9 @@
       height: 300px;
       width: 90%;
     }
+  }
+  .footer{
+    color: #fff;
+    position: sticky;
+    text-align: center;
   }
