@@ -1,8 +1,14 @@
+html{
+  height: 100%;
+}
 body{
   background-image: url(leaf.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 .font-style{
@@ -83,6 +89,7 @@ body{
   }
   .footer{
     color: #fff;
-    position: sticky;
+    grid-row-start: 2;
+    grid-row-end: 3;
     text-align: center;
   }
