@@ -47,7 +47,7 @@ const selectItem = (event, img) => {
     sliders.push(img);
   } else {
     element.classList.remove('added');
-    sliders.pop(img);
+    sliders.splice(item, 1);
   }
 }
 var timer
@@ -138,6 +138,8 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+//Bonus work
 
 const toggleSpinner = () =>{
   const spinner = document.getElementById('spinner');
